@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fernando Moyano | Full Stack Dev</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header-container">
+        <div class="logo">FM</div>
+        <nav class="nav" id="nav">
+          <ul>
+            <li><a href="#about">Sobre mí</a></li>
+            <li><a href="#projects">Proyectos</a></li>
+            <li><a href="#contact">Contacto</a></li>
+          </ul>
+        </nav>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-label="Cambiar modo">
+          <span class="theme-switch-track"></span>
+          <span id="theme-thumb" class="theme-switch-thumb">
+            <span id="theme-icon" class="theme-icon">🌙</span>
+          </span>
+        </button>
+        <div class="menu-toggle" id="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero section -->
+    <section class="hero">
+      <div class="hero-background"></div>
+      <div>
+        <h1 class="hero-title">Fernando Moyano</h1>
+        <h3>👨🏾‍💻Full Stack Developer</h3>
+        <div class="status-btn">
+          <span class="status-dot"></span>
+          Disponible
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+      <h2>Sobre mí</h2>
+      <p>
+        Soy <strong>desarrollador de Software</strong> cursando actualmente una
+        Tecnicatura Superior en dicha area. <br /><br />
+
+        Complemento mi formación de manera constante a través de diversas
+        plataformas especializadas en programación. Me interesa especialmente el
+        trabajo en equipo y valoro la
+        <strong>comunicación</strong> continua como base sólida para abordar con
+        eficacia los <strong>desafíos</strong> y requerimientos que plantea el
+        entorno profesional. <br /><br />
+
+        Busco <strong>Actulizarme</strong> permanentemente nuevas tecnologias y
+        tendencias, aplicando <strong>integraciones</strong>,
+        <strong>automatizaciones</strong>, que permitan entregar productos de
+        mejor calidad.
+        <br />
+      </p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <h2>Proyectos</h2>
+      <div class="project-list">
+        <div class="project-card">
+          <h3>Prototipo E-commerce</h3>
+          <p>Implementacion de patrones de diseño</p>
+          <button class="btn" data-project="1">Ver más</button>
+        </div>
+
+        <div class="project-card">
+          <h3>Proyecto Dos</h3>
+          <p>Integer nec odio. Sed cursus ante dapibus diam.</p>
+          <button class="btn" data-project="2">Ver más</button>
+        </div>
+
+        <div class="project-card">
+          <h3>Proyecto Tres</h3>
+          <p>Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+          <button class="btn" data-project="3">Ver más</button>
+        </div>
+
+        <div class="project-card">
+          <h3>Proyecto Cuatro</h3>
+          <p>Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+          <button class="btn" data-project="3">Ver más</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pop-up -->
+    <div id="project-popup" class="popup hidden">
+      <div class="popup-content">
+        <span id="popup-close" class="popup-close">&times;</span>
+        <h3 id="popup-title"></h3>
+        <p id="popup-description"></p>
+        <p>
+          <strong>Tecnologías usadas:</strong> <span id="popup-tech"></span>
+        </p>
+        <div class="tech-icons">
+          <i
+            class="devicon-nodejs-plain colored tech-icon node"
+            title="Node.js"></i>
+          <i
+            class="devicon-express-original tech-icon express"
+            title="Express.js"></i>
+          <i
+            class="devicon-react-original colored tech-icon react"
+            title="React"></i>
+          <i
+            class="devicon-html5-plain colored tech-icon html"
+            title="HTML5"></i>
+          <i class="devicon-css3-plain colored tech-icon css" title="CSS3"></i>
+        </div>
+        <p>
+          <strong>Proyecto desplegado:</strong>
+          <a id="popup-deployed" href="#" target="_blank">Ver aquí</a>
+        </p>
+        <p>
+          <strong>Repositorio de Github:</strong>
+          <a id="popup-repo" href="#" target="_blank">Ver aquí</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Contacto -->
+    <section id="contact" class="section">
+      <h2>Contacto</h2>
+      <form class="contact-form">
+        <label for="name">Nombre</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Tu nombre"
+          required />
+
+        <label for="email">Correo</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="tucorreo@ejemplo.com"
+          required />
+
+        <label for="message">Mensaje</label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Escribe tu mensaje..."
+          required></textarea>
+
+        <button type="submit" class="btn">Enviar</button>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2025 Fernando Moyano. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="./js/projects.js"></script>
+    <script src="./js/app.js" type="module"></script>
+  </body>
+</html>
