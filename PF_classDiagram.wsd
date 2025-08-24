@@ -1,19 +1,21 @@
-@startuml Portfolio Class Diagram
+@startuml Portfolio Class Diagram - Updated
 
 !define COMPONENT_COLOR #E3F2FD
 !define CONTROLLER_COLOR #F3E5F5
 !define DATA_COLOR #E8F5E8
 !define MAIN_COLOR #FFF3E0
+!define RENDERER_COLOR #FFF8E1
 
 package "Portfolio Application" {
 
     class App <<Main Application>> MAIN_COLOR {
         - navigation: NavigationController
         - theme: ThemeController
+        - projectsRenderer: ProjectsRenderer
         - popup: PopupController
         - contact: ContactController
         + constructor()
-        + init(): void
+        + init(): Promise<void>
     }
 
     package "Components" <<Controller Layer>> {
@@ -46,15 +48,29 @@ package "Portfolio Application" {
             + setTheme(isDark: boolean, save: boolean): void
         }
 
+        class ProjectsRenderer RENDERER_COLOR {
+            - projectsContainer: HTMLElement
+            - projects: Object
+            - techIcons: Object
+            + constructor()
+            + init(): Promise<void>
+            + loadProjects(): Promise<void>
+            + renderProjects(): void
+            + createProjectCard(project: Object, id: string): HTMLElement
+            + getProjects(): Object
+            + renderTechIcons(technologies: string[]): string
+        }
+
         class PopupController CONTROLLER_COLOR {
             - popup: HTMLElement
             - popupClose: HTMLElement
-            - elements: Object
-            + constructor()
+            - popupContent: HTMLElement
+            - projectsRenderer: ProjectsRenderer
+            + constructor(projectsRenderer: ProjectsRenderer)
             + init(): void
             + setupEventListeners(): void
             + openProject(event: Event): void
-            + populatePopupContent(project: Project): void
+            + renderPopupContent(project: Object): void
             + showPopup(): void
             + closePopup(): void
         }
@@ -78,16 +94,25 @@ package "Portfolio Application" {
         
         class Project DATA_COLOR {
             + title: string
+            + shortDescription: string
             + description: string
             + tech: string
+            + technologies: string[]
             + deployed: string
             + repo: string
         }
 
         class ProjectsData DATA_COLOR {
-            + projects: Map<number, Project>
-            + getProject(id: number): Project
+            + projects: Map<string, Project>
+            + getProject(id: string): Project
             + getAllProjects(): Project[]
+        }
+
+        class ProjectsJSON <<JSON File>> DATA_COLOR {
+            + "1": Project
+            + "2": Project
+            + "3": Project
+            + "4": Project
         }
     }
 
@@ -96,44 +121,57 @@ package "Portfolio Application" {
         interface HTMLFormElement COMPONENT_COLOR
         interface Event COMPONENT_COLOR
         interface LocalStorage COMPONENT_COLOR
+        interface Fetch COMPONENT_COLOR
     }
 }
 
-' Relaciones de composición
+' Relaciones de composición principales
 App *-- NavigationController : composes
 App *-- ThemeController : composes
+App *-- ProjectsRenderer : composes
 App *-- PopupController : composes
 App *-- ContactController : composes
 
 ' Relaciones de herencia
 NavigationController --|> BaseController
 ThemeController --|> BaseController
-PopupController --|> BaseController
 ContactController --|> BaseController
+ProjectsRenderer --|> BaseController
+PopupController --|> BaseController
 
-' Relaciones de dependencia
-PopupController ..> ProjectsData : uses
+' Relaciones de dependencia y asociación
+PopupController --> ProjectsRenderer : depends on
+ProjectsRenderer ..> ProjectsJSON : fetches from
+ProjectsRenderer ..> Fetch : uses
 PopupController ..> Project : uses
 ContactController ..> HTMLFormElement : interacts with
 
-' Relaciones de asociación
+' Relaciones DOM
 NavigationController --> HTMLElement : menuToggle
 NavigationController --> HTMLElement : nav
 ThemeController --> HTMLElement : themeToggle
 ThemeController --> HTMLElement : themeIcon
 ThemeController --> LocalStorage : uses
+ProjectsRenderer --> HTMLElement : projectsContainer
 PopupController --> HTMLElement : popup
+PopupController --> HTMLElement : popupContent
 ContactController --> HTMLFormElement : form
 
 ' Relaciones de datos
 ProjectsData *-- Project : contains
+ProjectsJSON *-- Project : contains
 
-note top of App : "Clase principal que inicializa\ntodos los componentes del portfolio"
+' Notas explicativas
+note top of App : "Clase principal que inicializa todos\nlos componentes del portfolio.\nAhora incluye ProjectsRenderer"
 
 note right of BaseController : "Patrón Template Method\nDefine la estructura común\npara todos los controladores"
 
-note bottom of ProjectsData : "Módulo de datos exportado\nContiene información de proyectos"
+note bottom of ProjectsJSON : "Archivo JSON que contiene\nlos datos de proyectos.\nÚnica fuente de verdad"
 
-note left of PopupController : "Maneja la visualización\nde detalles de proyectos\nen modal"
+note left of ProjectsRenderer : "Renderiza dinámicamente\nlas tarjetas de proyecto\ndesde datos JSON"
+
+note right of PopupController : "Renderiza dinámicamente\nel contenido del popup\nincluyen do iconos de tech"
+
+note bottom of Project : "Estructura actualizada con\nshortDescription y array\nde technologies"
 
 @enduml
