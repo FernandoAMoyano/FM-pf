@@ -13,7 +13,6 @@ const popupClose = document.getElementById("popup-close");
 
 const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = document.getElementById("theme-icon");
-const themeThumb = document.getElementById("theme-thumb");
 
 menuToggle.addEventListener("click", () => {
   menuToggle.classList.toggle("active");
