@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
 /* https://color.adobe.com/es/explore?page=2 */
 :root {
   --primary-color: #0d0d0d;
@@ -11,8 +13,6 @@
   --header-bg: #fff;
   --shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 /******************************** RESET ******************************/
 
@@ -208,15 +208,19 @@ body.dark-mode .hero-background {
   margin-top: 60px;
 }
 
-h2,
 h3 {
   color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+h2 {
+  font-size: 1, 2rem;
   margin-bottom: 1rem;
 }
 
 p {
   color: var(--tertiary-color);
   font-weight: 500;
+  font-size: 18px;
 }
 /****************************** PROYECTOS ******************************/
 
@@ -299,9 +303,11 @@ p {
 /************************* FORMULARIO ***************************/
 
 .contact-form {
+  /*   width: 80%; */
   display: flex;
   flex-direction: column;
   gap: 15px;
+  /* justify-self: center; */
 }
 
 .contact-form label {
@@ -423,6 +429,11 @@ footer {
   cursor: pointer;
 }
 
+#popup-repo,
+#popup-deployed {
+  color: rgb(111, 111, 224);
+}
+
 /* Status Button */
 .status-btn {
   display: inline-flex;
@@ -492,7 +503,7 @@ footer {
 }
 
 .tech-icon {
-  font-size: 1.7rem;
+  font-size: 2.2rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -524,6 +535,35 @@ footer {
 }
 .tech-icon.firebase {
   color: #ffca28;
+}
+.tech-icon.python {
+  color: #3776ab;
+}
+.tech-icon.python svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+.tech-icon.mysql {
+  color: #00758f;
+}
+.tech-icon.mysql svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+.tech-icon.pytest {
+  color: #0a9edc;
+}
+.tech-icon.pytest svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+.tech-icon.pydantic {
+  color: #e92063;
+}
+.tech-icon.pydantic svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  fill: currentColor;
 }
 
 /************************** RESPONSIVE *****************************/
@@ -565,7 +605,7 @@ footer {
   }
 
   .hero-title {
-    font-size: 32px;
+    font-size: 40px;
   }
 }
 
@@ -579,8 +619,8 @@ footer {
   display: flex;
   align-items: center;
   position: relative;
-  width: 48px;
-  height: 26px;
+  width: 60px;
+  height: 30px;
   padding: 0;
 }
 
@@ -596,46 +636,71 @@ footer {
   width: 100%;
   height: 100%;
   background: #e4e4e4;
-  border-radius: 13px;
+  border-radius: 15px;
   transition: background 0.3s;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
   position: absolute;
   left: 0;
   top: 0;
 }
 
 body.dark-mode .theme-switch-track {
-  background: #333a44;
+  background: #2d3748;
+}
+
+.theme-switch-track::before {
+  content: "☀";
+  font-size: 1rem;
+  position: relative;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity 0.3s;
+  color: var(--primary-color);
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.1));
+}
+
+.theme-switch-track::after {
+  content: "☾";
+  font-size: 1.2rem;
+  position: relative;
+  z-index: 0;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  color: var(--primary-color);
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.1));
+}
+
+body.dark-mode .theme-switch-track::before {
+  opacity: 0.5;
+}
+
+body.dark-mode .theme-switch-track::after {
+  opacity: 1;
 }
 
 .theme-switch-thumb {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   background: #fff;
   border-radius: 50%;
   position: absolute;
-  top: 2px;
-  left: 2px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  transition: left 0.3s, background 0.3s;
+  top: 3px;
+  left: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: left 0.3s ease, background 0.3s;
   z-index: 1;
 }
 
 body.dark-mode .theme-switch-thumb {
-  left: 24px;
-  background: #22272e;
-  color: #ffe066;
+  left: 33px;
+  background: #1a202c;
 }
 
 .theme-icon {
-  pointer-events: none;
-  transition: color 0.3s;
-  font-size: 1.1rem;
+  display: none;
 }
 
 /*************************** DARK MODE ***************************/
@@ -721,6 +786,33 @@ body.dark-mode .tech-icon.node {
 }
 body.dark-mode .tech-icon.express {
   color: #fff;
+}
+body.dark-mode .tech-icon.python {
+  color: #3776ab;
+}
+body.dark-mode .tech-icon.python svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+body.dark-mode .tech-icon.mysql {
+  color: #00758f;
+}
+body.dark-mode .tech-icon.mysql svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+body.dark-mode .tech-icon.pytest {
+  color: #0a9edc;
+}
+body.dark-mode .tech-icon.pytest svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+body.dark-mode .tech-icon.pydantic {
+  color: #e92063;
+}
+body.dark-mode .tech-icon.pydantic svg {
+  fill: currentColor;
 }
 
 body.dark-mode .nav a {

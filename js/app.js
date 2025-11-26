@@ -3,6 +3,7 @@ import { projects } from "./projects";
 const menuToggle = document.getElementById("menu-toggle");
 const nav = document.getElementById("nav");
 
+/* popup */
 const popup = document.getElementById("project-popup");
 const popupTitle = document.getElementById("popup-title");
 const popupDescription = document.getElementById("popup-description");
@@ -11,6 +12,7 @@ const popupDeployed = document.getElementById("popup-deployed");
 const popupRepo = document.getElementById("popup-repo");
 const popupClose = document.getElementById("popup-close");
 
+/* theme toggle */
 const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = document.getElementById("theme-icon");
 
@@ -30,6 +32,22 @@ document.querySelectorAll(".btn[data-project]").forEach((button) => {
       popupTech.textContent = project.tech;
       popupDeployed.href = project.deployed;
       popupRepo.href = project.repo;
+
+      // Renderizar iconos de tecnologías dinámicamente
+      const techIconsContainer = document.querySelector(".popup-content .tech-icons");
+      if (techIconsContainer && project.technologies) {
+        techIconsContainer.innerHTML = project.technologies
+          .map((tech) => {
+            if (tech.icon === "custom-svg") {
+              // Para SVG personalizado, crear un span con el SVG inline
+              return `<span class="tech-icon ${tech.class}" title="${tech.name}">${tech.svg}</span>`;
+            } else {
+              // Para iconos de devicon
+              return `<i class="${tech.icon} colored tech-icon ${tech.class}" title="${tech.name}"></i>`;
+            }
+          })
+          .join("");
+      }
 
       popup.classList.remove("hidden");
     }

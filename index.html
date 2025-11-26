@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fernando Moyano | Full Stack Dev</title>
+    <title>Fernando Moyano | Software Developer</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css" />
+      href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css"
+    />
   </head>
   <body>
     <!-- Header -->
@@ -24,7 +25,8 @@
         <button
           id="theme-toggle"
           class="theme-toggle"
-          aria-label="Cambiar modo">
+          aria-label="Cambiar modo"
+        >
           <span class="theme-switch-track"></span>
           <span id="theme-thumb" class="theme-switch-thumb">
             <span id="theme-icon" class="theme-icon">🌙</span>
@@ -43,7 +45,7 @@
       <div class="hero-background"></div>
       <div>
         <h1 class="hero-title">Fernando Moyano</h1>
-        <h3>👨🏾‍💻Full Stack Developer</h3>
+        <h3>Software Developer</h3>
         <div class="status-btn">
           <span class="status-dot"></span>
           Disponible
@@ -59,8 +61,8 @@
         Tecnicatura Superior en dicha area. <br /><br />
 
         Complemento mi formación de manera constante a través de diversas
-        plataformas especializadas en programación. Me interesa especialmente el
-        trabajo en equipo y valoro la
+        plataformas especializadas en programación. <br />
+        Me interesa especialmente el trabajo en equipo y valoro la
         <strong>comunicación</strong> continua como base sólida para abordar con
         eficacia los <strong>desafíos</strong> y requerimientos que plantea el
         entorno profesional. <br /><br />
@@ -78,26 +80,33 @@
       <h2>Proyectos</h2>
       <div class="project-list">
         <div class="project-card">
-          <h3>Prototipo E-commerce</h3>
-          <p>Implementacion de patrones de diseño</p>
+          <h3>SmartHome</h3>
+          <p>
+            Sistema integral de gestión domótica que permite controlar
+            dispositivos inteligentes en el hogar mediante una aplicación de
+            consola.
+          </p>
           <button class="btn" data-project="1">Ver más</button>
         </div>
 
         <div class="project-card">
-          <h3>Proyecto Dos</h3>
-          <p>Integer nec odio. Sed cursus ante dapibus diam.</p>
+          <h3>Turnity</h3>
+          <p>
+            API Rest completa para sistema de reservas de citas en salones de
+            belleza.
+          </p>
           <button class="btn" data-project="2">Ver más</button>
         </div>
 
         <div class="project-card">
-          <h3>Proyecto Tres</h3>
-          <p>Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+          <h3>Turnity</h3>
+          <p>Aplicacion Full Stack para reserva de turnos.</p>
           <button class="btn" data-project="3">Ver más</button>
         </div>
 
         <div class="project-card">
           <h3>Proyecto Cuatro</h3>
-          <p>Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+          <p>Sed nisi. Nulla quis sem at nibh elementum.</p>
           <button class="btn" data-project="4">Ver más</button>
         </div>
       </div>
@@ -108,25 +117,32 @@
       <div class="popup-content">
         <span id="popup-close" class="popup-close">&times;</span>
         <h3 id="popup-title"></h3>
+
         <p id="popup-description"></p>
+        <br />
         <p>
           <strong>Tecnologías usadas:</strong> <span id="popup-tech"></span>
         </p>
         <div class="tech-icons">
           <i
             class="devicon-nodejs-plain colored tech-icon node"
-            title="Node.js"></i>
+            title="Node.js"
+          ></i>
           <i
             class="devicon-express-original tech-icon express"
-            title="Express.js"></i>
+            title="Express.js"
+          ></i>
           <i
             class="devicon-react-original colored tech-icon react"
-            title="React"></i>
+            title="React"
+          ></i>
           <i
             class="devicon-html5-plain colored tech-icon html"
-            title="HTML5"></i>
+            title="HTML5"
+          ></i>
           <i class="devicon-css3-plain colored tech-icon css" title="CSS3"></i>
         </div>
+        <br />
         <p>
           <strong>Proyecto desplegado:</strong>
           <a id="popup-deployed" href="#" target="_blank">Ver aquí</a>
@@ -148,7 +164,8 @@
           id="name"
           name="name"
           placeholder="Tu nombre"
-          required />
+          required
+        />
 
         <label for="email">Correo</label>
         <input
@@ -156,14 +173,16 @@
           id="email"
           name="email"
           placeholder="tucorreo@ejemplo.com"
-          required />
+          required
+        />
 
         <label for="message">Mensaje</label>
         <textarea
           id="message"
           name="message"
           placeholder="Escribe tu mensaje..."
-          required></textarea>
+          required
+        ></textarea>
 
         <button type="submit" class="btn">Enviar</button>
       </form>
