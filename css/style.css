@@ -543,6 +543,41 @@ footer {
   color: rgb(111, 111, 224);
 }
 
+/* Tech List in Popup */
+.tech-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.tech-item:last-child {
+  border-bottom: none;
+}
+
+.tech-item .tech-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.tech-item .tech-icon svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.tech-name {
+  font-weight: 500;
+  color: var(--secondary-color);
+  font-size: 0.95rem;
+}
+
 /* ==========================================
    13. COMPONENTS - BUTTONS
    ========================================== */

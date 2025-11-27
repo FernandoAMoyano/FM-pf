@@ -7,7 +7,7 @@ const nav = document.getElementById("nav");
 const popup = document.getElementById("project-popup");
 const popupTitle = document.getElementById("popup-title");
 const popupDescription = document.getElementById("popup-description");
-const popupTech = document.getElementById("popup-tech");
+const techList = document.getElementById("tech-list");
 const popupDeployed = document.getElementById("popup-deployed");
 const popupRepo = document.getElementById("popup-repo");
 const popupClose = document.getElementById("popup-close");
@@ -29,22 +29,22 @@ document.querySelectorAll(".btn[data-project]").forEach((button) => {
     if (project) {
       popupTitle.textContent = project.title;
       popupDescription.textContent = project.description;
-      popupTech.textContent = project.tech;
       popupDeployed.href = project.deployed;
       popupRepo.href = project.repo;
 
-      // Renderizar iconos de tecnologías dinámicamente
-      const techIconsContainer = document.querySelector(".popup-content .tech-icons");
-      if (techIconsContainer && project.technologies) {
-        techIconsContainer.innerHTML = project.technologies
+      // Renderizar lista de tecnologías con iconos
+      if (techList && project.technologies) {
+        techList.innerHTML = project.technologies
           .map((tech) => {
+            let iconHTML = '';
             if (tech.icon === "custom-svg") {
-              // Para SVG personalizado, crear un span con el SVG inline
-              return `<span class="tech-icon ${tech.class}" title="${tech.name}">${tech.svg}</span>`;
+              // Para SVG personalizado
+              iconHTML = `<span class="tech-icon ${tech.class}">${tech.svg}</span>`;
             } else {
               // Para iconos de devicon
-              return `<i class="${tech.icon} colored tech-icon ${tech.class}" title="${tech.name}"></i>`;
+              iconHTML = `<i class="${tech.icon} colored tech-icon ${tech.class}"></i>`;
             }
+            return `<li class="tech-item">${iconHTML}<span class="tech-name">${tech.name}</span></li>`;
           })
           .join("");
       }
