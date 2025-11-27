@@ -445,6 +445,10 @@ footer {
   color: #222;
 }
 
+.tech-icon.postgresql {
+  color: #336791;
+}
+
 .tech-icon.vue {
   color: #42b883;
 }
@@ -489,6 +493,24 @@ footer {
   width: 2.2rem;
   height: 2.2rem;
   fill: currentColor;
+}
+
+.tech-icon.prisma {
+  color: #2d3748;
+}
+
+.tech-icon.prisma svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.tech-icon.docker {
+  color: #2496ed;
+}
+
+.tech-icon.docker svg {
+  width: 2.2rem;
+  height: 2.2rem;
 }
 
 /* ==========================================
@@ -548,6 +570,9 @@ footer {
   list-style: none;
   padding: 0;
   margin: 10px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 20px;
 }
 
 .tech-item {
@@ -558,7 +583,8 @@ footer {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.tech-item:last-child {
+.tech-item:last-child,
+.tech-item:nth-last-child(2):nth-child(odd) {
   border-bottom: none;
 }
 
@@ -904,6 +930,10 @@ body.dark-mode .tech-icon.express {
   color: #fff;
 }
 
+body.dark-mode .tech-icon.postgresql {
+  color: #336791;
+}
+
 /* Dark Mode - Tech Icons (Custom SVG) */
 body.dark-mode .tech-icon.python {
   color: #3776ab;
@@ -938,6 +968,38 @@ body.dark-mode .tech-icon.pydantic {
 
 body.dark-mode .tech-icon.pydantic svg {
   fill: currentColor;
+}
+
+body.dark-mode .tech-icon.prisma {
+  color: #fff;
+}
+
+body.dark-mode .tech-icon.prisma svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+body.dark-mode .tech-icon.prisma svg path {
+  fill: currentColor;
+}
+
+body.dark-mode .tech-icon.docker {
+  color: #2496ed;
+}
+
+body.dark-mode .tech-icon.docker svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+/* Dark Mode - Tech List */
+body.dark-mode .tech-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .tech-item:last-child,
+body.dark-mode .tech-item:nth-last-child(2):nth-child(odd) {
+  border-bottom: none;
 }
 
 /* Dark Mode - Forms */
