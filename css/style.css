@@ -1,21 +1,56 @@
+/* ==========================================
+
+  1. IMPORTS & FONTS - Google Fonts
+  2. VARIABLES & THEMING - Todas las variables CSS organizadas por categorías
+  3. LAYOUT - HEADER - Header y logo
+  4. RESET & BASE STYLES - Reset + tipografía base
+  5. LAYOUT - SECTIONS - Secciones generales
+  6. LAYOUT - FOOTER - Footer
+  7. COMPONENTS - NAVIGATION - Nav + menú hamburguesa
+  8. COMPONENTS - HERO SECTION - Hero con animaciones
+  9. COMPONENTS - STATUS INDICATOR - Botón de disponibilidad
+  10. COMPONENTS - PROJECT CARDS - Tarjetas de proyectos
+  11. COMPONENTS - TECH ICONS - Iconos de tecnologías (devicon + SVG custom)
+  12. COMPONENTS - POPUP/MODAL - Modal de proyectos
+  13. COMPONENTS - BUTTONS - Estilos de botones
+  14. COMPONENTS - FORMS - Formularios de contacto
+  15. COMPONENTS - THEME TOGGLE - Switch de tema
+  16. RESPONSIVE - MOBILE - Media queries
+  17. DARK MODE - THEME - Todo el modo oscuro junto al final
+  
+   ========================================== */
+
+/* ==========================================
+   1. IMPORTS & FONTS
+   ========================================== */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
-/* https://color.adobe.com/es/explore?page=2 */
+/* ==========================================
+   2. VARIABLES & THEMING
+   ========================================== */
 :root {
+  /* Colors */
   --primary-color: #0d0d0d;
   --secondary-color: #252625;
   --tertiary-color: #585959;
   --quaternary-color: #8c8c8c;
   --text-light: #d9d9d9;
-  --button-size: 28px;
+
+  /* Layout */
   --bg-color: #fff;
   --card-bg: #fff;
   --header-bg: #fff;
+
+  /* Effects */
   --shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+
+  /* Sizes */
+  --button-size: 28px;
 }
 
-/******************************** RESET ******************************/
-
+/* ==========================================
+   3. RESET & BASE STYLES
+   ========================================== */
 * {
   margin: 0;
   padding: 0;
@@ -29,8 +64,27 @@ body {
   line-height: 1.6;
 }
 
-/***************************** HEADER ********************************/
+/* Typography */
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+}
 
+h3 {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+p {
+  color: var(--tertiary-color);
+  font-weight: 500;
+  font-size: 18px;
+}
+
+/* ==========================================
+   4. LAYOUT - HEADER
+   ========================================== */
 header {
   padding: 20px 40px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -54,6 +108,46 @@ header {
   color: var(--primary-color);
 }
 
+/* ==========================================
+   5. LAYOUT - SECTIONS
+   ========================================== */
+.section {
+  padding: 100px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.section:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 1px;
+  width: 200px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 0, 0, 0.1),
+    transparent
+  );
+  margin-top: 60px;
+}
+
+/* ==========================================
+   6. LAYOUT - FOOTER
+   ========================================== */
+footer {
+  text-align: center;
+  padding: 40px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* ==========================================
+   7. COMPONENTS - NAVIGATION
+   ========================================== */
 .nav ul {
   list-style: none;
   display: flex;
@@ -63,9 +157,8 @@ header {
 .nav a {
   text-decoration: none;
   color: var(--tertiary-color);
-  font-weight: 500;
-  font-size: 16px;
   font-weight: 600;
+  font-size: 16px;
   position: relative;
 }
 
@@ -84,28 +177,39 @@ header {
   width: 100%;
 }
 
-.btn {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 13px;
-  font-weight: 500;
-  min-width: 110px;
-  text-align: center;
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  gap: 5px;
+  z-index: 1001;
 }
 
-.btn:hover {
-  background-color: white;
-  color: #1a1a1a;
-  border: 1px solid var(--primary-color);
-  transform: translateY(-1px);
+.menu-toggle span {
+  height: 2px;
+  width: 25px;
+  background-color: var(--primary-color);
+  border-radius: 1px;
+  transition: all 0.3s ease;
+  transform-origin: center;
 }
 
-/************************* HERO **************************/
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ==========================================
+   8. COMPONENTS - HERO SECTION
+   ========================================== */
 .hero {
   position: relative;
   height: 100vh;
@@ -133,17 +237,6 @@ header {
   animation: drift 30s linear infinite;
   z-index: 0;
   opacity: 0.6;
-}
-
-/* Grilla más visible en modo oscuro */
-body.dark-mode .hero-background {
-  background-image: linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.035) 1px,
-      transparent 1px
-    ),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  opacity: 0.7;
 }
 
 @keyframes drift {
@@ -182,48 +275,70 @@ body.dark-mode .hero-background {
   }
 }
 
-/************************** SECCIONES ***********************/
-
-.section {
-  padding: 100px 20px;
-  max-width: 900px;
-  margin: 0 auto;
+/* ==========================================
+   9. COMPONENTS - STATUS INDICATOR
+   ========================================== */
+.status-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #eafbe7;
+  color: #218838;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 20px;
+  padding: 4px 14px 4px 8px;
+  margin-top: 10px;
+  gap: 7px;
+  border: none;
+  box-shadow: 0 1px 4px rgba(33, 136, 56, 0.07);
+  user-select: none;
   position: relative;
 }
 
-.section:not(:last-child)::after {
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background: #28d160;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+  box-shadow: 0 0 4px #28d16080;
+  position: relative;
+  z-index: 1;
+}
+
+.status-dot::after {
   content: "";
   position: absolute;
-  bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
-  height: 1px;
-  width: 200px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(0, 0, 0, 0.1),
-    transparent
-  );
-  margin-top: 60px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  background: rgba(40, 209, 96, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  animation: pulse-signal 1.5s infinite;
 }
 
-h3 {
-  color: var(--secondary-color);
-  margin-bottom: 1rem;
-}
-h2 {
-  font-size: 1, 2rem;
-  margin-bottom: 1rem;
+@keyframes pulse-signal {
+  0% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  70% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.2);
+  }
 }
 
-p {
-  color: var(--tertiary-color);
-  font-weight: 500;
-  font-size: 18px;
-}
-/****************************** PROYECTOS ******************************/
-
+/* ==========================================
+   10. COMPONENTS - PROJECT CARDS
+   ========================================== */
 .project {
   margin-bottom: 40px;
 }
@@ -285,12 +400,159 @@ p {
   margin-bottom: 1rem;
 }
 
+/* ==========================================
+   11. COMPONENTS - TECH ICONS
+   ========================================== */
+.tech-icons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  margin-top: 2px;
+}
+
+.tech-icon {
+  font-size: 2.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0;
+  line-height: 1;
+}
+
+/* Tech Icon Colors - Devicon */
+.tech-icon.html {
+  color: #e44d26;
+}
+
+.tech-icon.css {
+  color: #2965f1;
+}
+
+.tech-icon.js {
+  color: #f7df1e;
+}
+
+.tech-icon.react {
+  color: #61dafb;
+}
+
+.tech-icon.node {
+  color: #3c873a;
+}
+
+.tech-icon.express {
+  color: #222;
+}
+
+.tech-icon.vue {
+  color: #42b883;
+}
+
+.tech-icon.firebase {
+  color: #ffca28;
+}
+
+/* Tech Icon Colors - Custom SVG */
+.tech-icon.python {
+  color: #3776ab;
+}
+
+.tech-icon.python svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.tech-icon.mysql {
+  color: #00758f;
+}
+
+.tech-icon.mysql svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.tech-icon.pytest {
+  color: #0a9edc;
+}
+
+.tech-icon.pytest svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.tech-icon.pydantic {
+  color: #e92063;
+}
+
+.tech-icon.pydantic svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  fill: currentColor;
+}
+
+/* ==========================================
+   12. COMPONENTS - POPUP/MODAL
+   ========================================== */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.popup:not(.hidden) {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#popup-repo,
+#popup-deployed {
+  color: rgb(111, 111, 224);
+}
+
+/* ==========================================
+   13. COMPONENTS - BUTTONS
+   ========================================== */
 .btn {
   background-color: var(--secondary-color);
   color: white;
   border: none;
   border-radius: 4px;
   padding: 10px 12px;
+  font-size: 13px;
   font-weight: 500;
   min-width: 100px;
   max-width: max-content;
@@ -300,14 +562,20 @@ p {
   align-self: flex-start;
 }
 
-/************************* FORMULARIO ***************************/
+.btn:hover {
+  background-color: white;
+  color: #1a1a1a;
+  border: 1px solid var(--primary-color);
+  transform: translateY(-1px);
+}
 
+/* ==========================================
+   14. COMPONENTS - FORMS
+   ========================================== */
 .contact-form {
-  /*   width: 80%; */
   display: flex;
   flex-direction: column;
   gap: 15px;
-  /* justify-self: center; */
 }
 
 .contact-form label {
@@ -345,272 +613,9 @@ p {
   border: 1px solid var(--text-light);
 }
 
-/******************************* FOOTER ***********************************/
-
-footer {
-  text-align: center;
-  padding: 40px;
-  font-size: 14px;
-  color: #666;
-}
-
-/***************************** HAMBURGUESA ****************************/
-
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-  z-index: 1001;
-}
-
-.menu-toggle span {
-  height: 2px;
-  width: 25px;
-  background-color: var(--primary-color);
-  border-radius: 1px;
-  transition: all 0.3s ease;
-  transform-origin: center;
-}
-
-.menu-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-.menu-toggle.active span:nth-child(2) {
-  opacity: 0;
-}
-.menu-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/***************************** POP-UP ****************************/
-
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  opacity: 0; /* Inicialmente invisible */
-  transform: scale(0.9); /* Escala inicial para el efecto */
-  transition: opacity 0.3s ease, transform 0.3s ease; /* Transición suave */
-}
-
-.popup.hidden {
-  display: none; /* Oculta el pop-up cuando no está activo */
-}
-
-.popup:not(.hidden) {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.popup-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 500px;
-  text-align: left;
-  position: relative;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.popup-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-#popup-repo,
-#popup-deployed {
-  color: rgb(111, 111, 224);
-}
-
-/* Status Button */
-.status-btn {
-  display: inline-flex;
-  align-items: center;
-  background: #eafbe7;
-  color: #218838;
-  font-size: 0.95rem;
-  font-weight: 500;
-  border-radius: 20px;
-  padding: 4px 14px 4px 8px;
-  margin-top: 10px;
-  gap: 7px;
-  border: none;
-  box-shadow: 0 1px 4px rgba(33, 136, 56, 0.07);
-  user-select: none;
-  position: relative; /* Para posicionar el pulso */
-}
-
-.status-dot {
-  width: 10px;
-  height: 10px;
-  background: #28d160;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 4px;
-  box-shadow: 0 0 4px #28d16080;
-  position: relative;
-  z-index: 1;
-}
-
-.status-dot::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 18px;
-  height: 18px;
-  background: rgba(40, 209, 96, 0.3);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  animation: pulse-signal 1.5s infinite;
-}
-
-@keyframes pulse-signal {
-  0% {
-    opacity: 0.7;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  70% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(2.2);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(2.2);
-  }
-}
-
-/*********************** ICONOS DE TECNOLOGIAS **************************/
-
-.tech-icons {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 10px;
-  margin-top: 2px;
-}
-
-.tech-icon {
-  font-size: 2.2rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  padding: 0;
-  line-height: 1;
-}
-
-.tech-icon.html {
-  color: #e44d26;
-}
-.tech-icon.css {
-  color: #2965f1;
-}
-.tech-icon.js {
-  color: #f7df1e;
-}
-.tech-icon.react {
-  color: #61dafb;
-}
-.tech-icon.node {
-  color: #3c873a;
-}
-.tech-icon.express {
-  color: #222;
-}
-.tech-icon.vue {
-  color: #42b883;
-}
-.tech-icon.firebase {
-  color: #ffca28;
-}
-.tech-icon.python {
-  color: #3776ab;
-}
-.tech-icon.python svg {
-  width: 2.2rem;
-  height: 2.2rem;
-}
-.tech-icon.mysql {
-  color: #00758f;
-}
-.tech-icon.mysql svg {
-  width: 2.2rem;
-  height: 2.2rem;
-}
-.tech-icon.pytest {
-  color: #0a9edc;
-}
-.tech-icon.pytest svg {
-  width: 2.2rem;
-  height: 2.2rem;
-}
-.tech-icon.pydantic {
-  color: #e92063;
-}
-.tech-icon.pydantic svg {
-  width: 2.2rem;
-  height: 2.2rem;
-  fill: currentColor;
-}
-
-/************************** RESPONSIVE *****************************/
-
-@media screen and (max-width: 768px) {
-  .nav {
-    position: absolute;
-    top: 70px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    text-align: center;
-    background: var(--bg-color); /* Cambia de blanco a color de fondo */
-    transform: translateY(-300%);
-    transition: transform 0.4s ease-in-out;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  }
-
-  .nav.active {
-    transform: translateY(0%);
-  }
-
-  .nav ul {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    padding: 20px 0;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-
-  .header-container {
-    max-width: 300px;
-    display: flex;
-    align-items: center;
-  }
-
-  .hero-title {
-    font-size: 40px;
-  }
-}
-
-/************************ THEME TOGGLE BUTTON ***********************/
-
+/* ==========================================
+   15. COMPONENTS - THEME TOGGLE
+   ========================================== */
 .theme-toggle {
   background: none;
   border: none;
@@ -647,10 +652,6 @@ footer {
   top: 0;
 }
 
-body.dark-mode .theme-switch-track {
-  background: #2d3748;
-}
-
 .theme-switch-track::before {
   content: "☀";
   font-size: 1rem;
@@ -673,14 +674,6 @@ body.dark-mode .theme-switch-track {
   filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.1));
 }
 
-body.dark-mode .theme-switch-track::before {
-  opacity: 0.5;
-}
-
-body.dark-mode .theme-switch-track::after {
-  opacity: 1;
-}
-
 .theme-switch-thumb {
   width: 24px;
   height: 24px;
@@ -694,18 +687,59 @@ body.dark-mode .theme-switch-track::after {
   z-index: 1;
 }
 
-body.dark-mode .theme-switch-thumb {
-  left: 33px;
-  background: #1a202c;
-}
-
 .theme-icon {
   display: none;
 }
 
-/*************************** DARK MODE ***************************/
+/* ==========================================
+   16. RESPONSIVE - MOBILE
+   ========================================== */
+@media screen and (max-width: 768px) {
+  .nav {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    background: var(--bg-color);
+    transform: translateY(-300%);
+    transition: transform 0.4s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
 
+  .nav.active {
+    transform: translateY(0%);
+  }
+
+  .nav ul {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px 0;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .header-container {
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: 40px;
+  }
+}
+
+/* ==========================================
+   17. DARK MODE - THEME
+   ========================================== */
 body.dark-mode {
+  /* Dark Mode Variables */
   --primary-color: #f6f6f6;
   --secondary-color: #e0e0e0;
   --tertiary-color: #d9d9d9;
@@ -715,15 +749,25 @@ body.dark-mode {
   --card-bg: #23272f;
   --header-bg: #20232a;
   --shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
-}
 
-body.dark-mode {
   background-color: var(--bg-color);
   color: var(--secondary-color);
 }
 
+/* Dark Mode - Layout */
 body.dark-mode header {
   background: var(--header-bg);
+}
+
+/* Dark Mode - Hero */
+body.dark-mode .hero-background {
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  opacity: 0.7;
 }
 
 body.dark-mode h1.hero-title {
@@ -734,6 +778,16 @@ body.dark-mode h2 {
   color: var(--primary-color);
 }
 
+/* Dark Mode - Navigation */
+body.dark-mode .nav a {
+  color: var(--primary-color);
+}
+
+body.dark-mode .nav a::after {
+  background-color: var(--primary-color);
+}
+
+/* Dark Mode - Project Cards */
 body.dark-mode .project-card {
   background-color: var(#585959);
   color: var(--primary-color);
@@ -741,6 +795,7 @@ body.dark-mode .project-card {
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.32);
 }
 
+/* Dark Mode - Buttons */
 body.dark-mode .btn {
   background-color: var(--primary-color);
   color: var(--bg-color);
@@ -753,11 +808,13 @@ body.dark-mode .btn:hover {
   border: 1px solid var(--primary-color);
 }
 
+/* Dark Mode - Popup */
 body.dark-mode .popup-content {
   background: var(--card-bg);
   color: var(--primary-color);
 }
 
+/* Dark Mode - Status Button */
 body.dark-mode .status-btn {
   background: #22332a;
   color: #28d160;
@@ -769,60 +826,86 @@ body.dark-mode .status-dot {
   box-shadow: 0 0 4px #28d16080;
 }
 
+/* Dark Mode - Theme Toggle */
+body.dark-mode .theme-switch-track {
+  background: #2d3748;
+}
+
+body.dark-mode .theme-switch-track::before {
+  opacity: 0.5;
+}
+
+body.dark-mode .theme-switch-track::after {
+  opacity: 1;
+}
+
+body.dark-mode .theme-switch-thumb {
+  left: 33px;
+  background: #1a202c;
+}
+
+/* Dark Mode - Tech Icons (Devicon) */
 body.dark-mode .tech-icon.html {
   color: #e44d26;
 }
+
 body.dark-mode .tech-icon.css {
   color: #2965f1;
 }
+
 body.dark-mode .tech-icon.js {
   color: #f7df1e;
 }
+
 body.dark-mode .tech-icon.react {
   color: #61dafb;
 }
+
 body.dark-mode .tech-icon.node {
   color: #3c873a;
 }
+
 body.dark-mode .tech-icon.express {
   color: #fff;
 }
+
+/* Dark Mode - Tech Icons (Custom SVG) */
 body.dark-mode .tech-icon.python {
   color: #3776ab;
 }
+
 body.dark-mode .tech-icon.python svg {
   width: 2.2rem;
   height: 2.2rem;
 }
+
 body.dark-mode .tech-icon.mysql {
   color: #00758f;
 }
+
 body.dark-mode .tech-icon.mysql svg {
   width: 2.2rem;
   height: 2.2rem;
 }
+
 body.dark-mode .tech-icon.pytest {
   color: #0a9edc;
 }
+
 body.dark-mode .tech-icon.pytest svg {
   width: 2.2rem;
   height: 2.2rem;
 }
+
 body.dark-mode .tech-icon.pydantic {
   color: #e92063;
 }
+
 body.dark-mode .tech-icon.pydantic svg {
   fill: currentColor;
 }
 
-body.dark-mode .nav a {
-  color: var(--primary-color);
-}
-
-body.dark-mode .nav a::after {
-  background-color: var(--primary-color);
-}
-
+/* Dark Mode - Forms */
 body.dark-mode .contact-form input,
 body.dark-mode .contact-form textarea {
   background: var(--card-bg);
