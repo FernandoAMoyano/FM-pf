@@ -513,6 +513,15 @@ footer {
   height: 2.2rem;
 }
 
+.tech-icon.jwt {
+  color: #000;
+}
+
+.tech-icon.jwt svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
 /* ==========================================
    12. COMPONENTS - POPUP/MODAL
    ========================================== */
@@ -988,6 +997,15 @@ body.dark-mode .tech-icon.docker {
 }
 
 body.dark-mode .tech-icon.docker svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+body.dark-mode .tech-icon.jwt {
+  color: #fff;
+}
+
+body.dark-mode .tech-icon.jwt svg {
   width: 2.2rem;
   height: 2.2rem;
 }
